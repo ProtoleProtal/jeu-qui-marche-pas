@@ -6,7 +6,7 @@ public class Base : MonoBehaviour
 {
     public GameObject[] survivor;
 
-    public float speedMove = 2;
+    public float speedMove = 2f;
 
     private void OnTriggerStay(Collider other)
     {

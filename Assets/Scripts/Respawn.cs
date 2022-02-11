@@ -11,7 +11,7 @@ public class Respawn : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("scene fajr");
+        SceneManager.LoadScene("scene fajr dev");
         //player.transform.position = respawnpoint.transform.position;
     }
 }
