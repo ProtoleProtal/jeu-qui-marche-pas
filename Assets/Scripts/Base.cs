@@ -19,10 +19,10 @@ public class Base : MonoBehaviour
                 for (int i = 0; i < survivor.Length; i++)
                 {
                     if (survivor[i] != null)
-                    survivor[i].transform.position = Vector3.MoveTowards(survivor[i].transform.position, new Vector3(other.transform.position.x, survivor[i].transform.position.y, other.transform.position.z), speedMove);
+                    survivor[i].transform.position = Vector3.MoveTowards(survivor[i].transform.position, 
+                        new Vector3(other.transform.position.x, survivor[i].transform.position.y, other.transform.position.z), speedMove);
                 }
             } 
         }
     }
-
 }

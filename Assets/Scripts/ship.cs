@@ -17,7 +17,13 @@ public class ship : MonoBehaviour
     public Vector2 move;
     public bool moveUp, moveDown;
     public bool moveLeft, moveRight;
+    public bool dashInput;
+    public bool isDashing;
     public Rigidbody rigidbody;
+
+    [SerializeField]
+    private float _dashDelay = 5f;
+
 
     [Header("COLLIDER")]
     public bool isGround;
@@ -31,6 +37,18 @@ public class ship : MonoBehaviour
     public bool isFull = false;
     public bool isEmpty = true;
     public bool isChargeSurvivor = false;
+
+
+    void ChangeDashing() {
+        if (isDashing)
+        {
+            isDashing = false;
+        }
+        else
+        {
+            isDashing = true;
+        }
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -74,39 +92,82 @@ public class ship : MonoBehaviour
         moveDown = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
         moveLeft = Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow);
         moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
+        dashInput = Input.GetKey(KeyCode.Space);
+
+
     }
 
     private void Movement()
     {
+        int dashValue = 3;
+        bool dashOnCooldown = false;
+
         float moveAmount = movespeed * Time.deltaTime;
         this.rigidbody.useGravity = true;
 
+        if (dashInput)
+        {
+            ChangeDashing();
+        }
+        
         if (moveUp)
         {
-            transform.Translate(new Vector3(0, moveAmount, 0));
-            this.rigidbody.useGravity = false;
+            if(isDashing)
+            {
+                transform.Translate(new Vector3(0, moveAmount * dashValue, 0));
+            }
+            else 
+            {
+                transform.Translate(new Vector3(0, moveAmount, 0));
+                this.rigidbody.useGravity = false;
+            }
+            
         }
         else if (moveDown)
         {
-            transform.Translate(new Vector3(0, -moveAmount, 0));
+            if (isDashing)
+            {
+                transform.Translate(new Vector3(0, -moveAmount * dashValue, 0));
+            }
+            else 
+            {
+                transform.Translate(new Vector3(0, -moveAmount, 0));
+            }
         }
 
-        if (moveLeft && !isGround)
+        if(!isGround)
         {
-            transform.Translate(new Vector3(-moveAmount, 0, 0));
+            if (moveLeft)
+            {
+                if (isDashing)
+                {
+                    transform.Translate(new Vector3(-moveAmount * dashValue, 0, 0));
+                }
 
-            helicoAnimator.SetBool("Right", false);
-            helicoAnimator.SetBool("Left", true);
+                else 
+                {
+                    transform.Translate(new Vector3(-moveAmount, 0, 0));
+                }
+
+                helicoAnimator.SetBool("Right", false);
+                helicoAnimator.SetBool("Left", true);
+            }
+
+            if (moveRight)
+            {
+
+                if (isDashing)
+                {
+                    transform.Translate(new Vector3(moveAmount * dashValue, 0, 0));
+                }
+                else {
+                    transform.Translate(new Vector3(moveAmount, 0, 0));
+                }
+
+                helicoAnimator.SetBool("Left", false);
+                helicoAnimator.SetBool("Right", true);
+            }
         }
-
-        if (moveRight && !isGround)
-        {
-            transform.Translate(new Vector3(moveAmount, 0, 0));
-
-            helicoAnimator.SetBool("Left", false);
-            helicoAnimator.SetBool("Right", true);
-        }
-
         
         if (isGround)
         {
@@ -146,7 +207,7 @@ public class ship : MonoBehaviour
 
     }
 
-    private void Forward() => model.transform.rotation = new Quaternion(5, 0,0, -20);
+    private void Forward() => model.transform.rotation = new Quaternion(5, 0, 0, -20);
 
     private void Left() => model.transform.rotation = new Quaternion(0, 100, 0, 90);
 

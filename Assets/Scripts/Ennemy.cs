@@ -26,30 +26,34 @@ public class Ennemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.position) > stoppingDistancce)
+        if (pause.InPause == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        }
+            if (Vector3.Distance(transform.position, player.position) > stoppingDistancce)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            }
 
-        else if (Vector3.Distance(transform.position, player.position) < stoppingDistancce && Vector3.Distance(transform.position, player.position) > retreatDistance)
-        {
-            transform.position = this.transform.position;
-        }
+            else if (Vector3.Distance(transform.position, player.position) < stoppingDistancce && Vector3.Distance(transform.position, player.position) > retreatDistance)
+            {
+                transform.position = this.transform.position;
+            }
 
-        else if (Vector3.Distance(transform.position, player.position) < retreatDistance) 
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
-        }
+            else if (Vector3.Distance(transform.position, player.position) < retreatDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+            }
 
-        if(timeBTWShots <=0)
-        {
-            Instantiate(projectile, transform.position, Quaternion.identity);
-            timeBTWShots = startTimeBTWShots;
-        }
+            if (timeBTWShots <= 0)
+            {
+                Instantiate(projectile, transform.position, Quaternion.identity);
+                timeBTWShots = startTimeBTWShots;
+            }
 
-        else 
-        {
-            timeBTWShots -= Time.deltaTime;
+            else
+            {
+                timeBTWShots -= Time.deltaTime;
+            }
         }
+        
     }
 }
