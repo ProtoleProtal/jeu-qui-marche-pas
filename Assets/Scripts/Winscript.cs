@@ -18,9 +18,17 @@ public class Winscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(conditionwin == 15)
+        if(conditionwin >= 15)
         {
+            Debug.Log("win");
             winscreen.SetActive(true);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Survivor")
+        {
+            conditionwin++;
         }
     }
 }
