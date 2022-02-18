@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene("scene nive");
+        SceneManager.LoadScene("scene fajr dev");
         winscreen.SetActive(false);
     }
 }

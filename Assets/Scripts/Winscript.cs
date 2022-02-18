@@ -12,7 +12,7 @@ public class Winscript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        conditionwin = 0;
+        //conditionwin = 0;
         winscreen.SetActive(false);
     }
 

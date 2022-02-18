@@ -2722,7 +2722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4792d7e29e85f04ba696d6d4ed97ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winscreen: {fileID: 2101376176}
+  winscreen: {fileID: 371660013}
 --- !u!4 &371660015
 Transform:
   m_ObjectHideFlags: 0
@@ -8038,7 +8038,7 @@ PrefabInstance:
     - target: {fileID: 7890077294513862812, guid: 5d80f2c6924c9014fbc83c614097391f, type: 3}
       propertyPath: winscreen
       value: 
-      objectReference: {fileID: 2101376176}
+      objectReference: {fileID: 371660013}
     - target: {fileID: 7890077294513862815, guid: 5d80f2c6924c9014fbc83c614097391f, type: 3}
       propertyPath: m_Name
       value: pointderecupsurvivants (1)
@@ -12968,7 +12968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334f7d2bad55cd1489858fd4cdea2025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encule: {fileID: 2101376176}
+  encule: {fileID: 371660013}
 --- !u!1001 &2104952013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13524,7 +13524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085892994a68e2a47a82fa9d53facadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 257909527}
   respawnpoint: {fileID: 3733638591413646320}
 --- !u!23 &3733638591174307094
 MeshRenderer:
