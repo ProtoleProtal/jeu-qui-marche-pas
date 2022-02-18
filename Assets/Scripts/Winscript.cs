@@ -13,7 +13,7 @@ public class Winscript : MonoBehaviour
     void Start()
     {
         //conditionwin = 0;
-        winscreen.SetActive(false);
+        winscreen.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
