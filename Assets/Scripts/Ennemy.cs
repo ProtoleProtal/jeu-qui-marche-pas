@@ -7,6 +7,7 @@ public class Ennemy : MonoBehaviour
 
     public GameObject projectile;
     public Transform player;
+    public GameObject explosion;
 
     public float speed;
     public float stoppingDistancce;
@@ -55,5 +56,15 @@ public class Ennemy : MonoBehaviour
             }
         }
         
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 20 && other.gameObject.layer != LayerMask.NameToLayer("Default"))
+        {
+            Debug.Log("yoyoyoyo");
+
+            Instantiate(explosion, new Vector3(this.transform.position.x, this.transform.position.y,this.transform.position.z),Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

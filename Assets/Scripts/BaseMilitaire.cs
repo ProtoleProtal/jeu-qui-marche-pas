@@ -7,7 +7,7 @@ public class BaseMilitaire : MonoBehaviour
     
     public GameObject survivor,actualSurvivor;
     public Vector3 survivorPoint = Vector3.zero;
-    public GameObject otages;
+    public GameObject ralliement;
 
     public float speedMove = 2f;
 
@@ -16,9 +16,9 @@ public class BaseMilitaire : MonoBehaviour
          if (actualSurvivor != null)
         {
 
-            actualSurvivor.transform.position = Vector3.MoveTowards(actualSurvivor.transform.position, new Vector3(otages.transform.position.x, actualSurvivor.transform.position.y, otages.transform.position.z), speedMove);
+            actualSurvivor.transform.position = Vector3.MoveTowards(actualSurvivor.transform.position, new Vector3(ralliement.transform.position.x, ralliement.transform.position.y, ralliement.transform.position.z), speedMove);
 
-            if (actualSurvivor.transform.position == new Vector3(otages.transform.position.x, actualSurvivor.transform.position.y, otages.transform.position.z))
+            if (actualSurvivor.transform.position == new Vector3(ralliement.transform.position.x, ralliement.transform.position.y, ralliement.transform.position.z))
                 actualSurvivor = null;
         }
 
@@ -26,9 +26,7 @@ public class BaseMilitaire : MonoBehaviour
 
     }
 
-  
-
-    private void OnTriggerStay(Collider other)
+     private void OnTriggerStay(Collider other)
     {
         Debug.Log("Trigger " + gameObject.name + " Stay : " + other.name);
 
@@ -36,7 +34,7 @@ public class BaseMilitaire : MonoBehaviour
             {
                 if (actualSurvivor == null)
                 {
-                    actualSurvivor = Instantiate<GameObject>(survivor, new Vector3(gameObject.transform.position.x, otages.transform.position.y, gameObject.transform.position.z), Quaternion.identity, gameObject.transform.parent);
+                    actualSurvivor = Instantiate<GameObject>(survivor, new Vector3(gameObject.transform.position.x, ralliement.transform.position.y, gameObject.transform.position.z), Quaternion.identity, gameObject.transform.parent);
                     other.gameObject.GetComponent<ship>().survivor--;
                 }
 

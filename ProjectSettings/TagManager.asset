@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Charge
   - Survivor
+  - NTM
   layers:
   - Default
   - TransparentFX
@@ -29,13 +30,13 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Bullet
   - relicoptaire
   - 
   - 
   - 
   - 
-  - 
+  - GroundDeath
   - 
   - 
   - 

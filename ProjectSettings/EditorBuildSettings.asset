@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/scene fajr dev.unity
     guid: cdd48057fb189ee4eb9660a327ae6cd2
+  - enabled: 1
+    path: Assets/Scenes/scene nive.unity
+    guid: e1aa9428d71c17a44b519373d5bb9520
   m_configObjects: {}

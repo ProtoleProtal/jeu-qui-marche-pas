@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ship : MonoBehaviour
 {
@@ -38,19 +39,33 @@ public class ship : MonoBehaviour
     public bool isEmpty = true;
     public bool isChargeSurvivor = false;
 
+    public GameObject prefabBullet;
+    public Transform canonPos;
 
-    void ChangeDashing() {
+    float dashingTime = 0;
+    void ChangeDashing() 
+    {
         if (isDashing)
         {
-            isDashing = false;
+            //isDashing = false;
         }
         else
         {
             isDashing = true;
+            dashingTime = 0;
         }
     }
 
     // Update is called once per frame
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(prefabBullet, new Vector3(canonPos.transform.position.x, canonPos.transform.position.y, canonPos.transform.position.z), Quaternion.identity);
+        }
+    }
+
     void FixedUpdate()
     {
 
@@ -84,6 +99,7 @@ public class ship : MonoBehaviour
 
         this.rigidbody.velocity = new Vector3(0, -5, 0);
 
+
     }
 
     private void InputManager()
@@ -92,7 +108,7 @@ public class ship : MonoBehaviour
         moveDown = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
         moveLeft = Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow);
         moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
-        dashInput = Input.GetKey(KeyCode.Space);
+        dashInput = Input.GetKey(KeyCode.LeftShift);
 
 
     }
@@ -109,7 +125,13 @@ public class ship : MonoBehaviour
         {
             ChangeDashing();
         }
-        
+
+        if (dashingTime < 0.5)
+            dashingTime += Time.deltaTime;
+        else
+            isDashing = false;
+
+
         if (moveUp)
         {
             if(isDashing)
@@ -195,6 +217,11 @@ public class ship : MonoBehaviour
                 survivor++;
                 Destroy(other.gameObject);
             }
+        }
+
+        if (other.CompareTag("Ground") || other.gameObject.layer == 26)
+        {
+            SceneManager.LoadScene("scene fajr dev");
         }
     }
 

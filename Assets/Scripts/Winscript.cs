@@ -12,16 +12,19 @@ public class Winscript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        conditionwin = 0;
         winscreen.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(conditionwin >= 15)
+        Debug.Log(conditionwin);
+
+        if(conditionwin == 15)
         {
             Debug.Log("win");
-            winscreen.SetActive(true);
+            winscreen.gameObject.SetActive(true);
         }
     }
     private void OnTriggerEnter(Collider other)
